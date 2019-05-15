@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
+	<title>Consultor de CEP</title>
+	<script language='javascript' type='text/javascript' src='js/jquery-1.2.6.js'></script>
+	<link href='css/style.css' type='text/css' rel='stylesheet'>
+	<script>
+	buscaRapida = 1;
+
+	$(document).ready(function(){
+		$("#buscar").click(function(){
+			resultadoConsulta($("#CampoCEP").val())
+		});	
+		$(".flag").click(function(){
+			habilitarDesabilitarBuscaRapida()
+		});			
+		$("#CampoCEP").keyup(function(){
+			retorno = formatarCEP(this.value)
+			this.value = retorno
+			if(this.value.length == 8 && buscaRapida == 1){
+				resultadoConsulta($("#CampoCEP").val())
+			} 
+		});	
+	});
+	$(document).keypress(function(e) {
+		if(e.which == 13){
+			resultadoConsulta($("#CampoCEP").val())
+		}
+	});
+
+	function habilitarDesabilitarBuscaRapida(){
+		if (buscaRapida == 1){
+			$(".flag").children().animate({'margin-left':'0px'},100);
+			$(".flag").removeClass("ativo");
+			buscaRapida = 0;
+		}else{
+			$(".flag").children().animate({'margin-left':'50%'},100);
+			$(".flag").addClass("ativo");
+			buscaRapida = 1;		
+		}
+	}
+	
+	function resultadoConsulta(cep){	
+		if($("#CampoCEP").val().length < 8){
+			$("#retornoTabela, #retornoErroInv").css({'display':'none'});
+			$("#retornoErroQtd").css({'display':'block'});
+		}else{
+			$.getJSON("https://viacep.com.br/ws/"+cep+"/json/", function(json){
+				if (json.erro){
+					$("#retornoTabela, #retornoErroQtd").css({'display':'none'});
+					$("#retornoErroInv").css({'display':'block'});
+				}else{
+					$("#retornoErroInv, #retornoErroQtd").css({'display':'none'});
+					$("#retornoTabela").css({'display':'inline-table'});
+					
+					$("#retornoCep").html(json.cep)
+					$("#retornoLogradouro").html(json.logradouro)
+					$("#retornoBairro").html(json.bairro)
+					$("#retornoLocalidade").html(json.localidade + " - " + json.uf)
+					$("#retornoIBGE").html(json.ibge)
+					$("#CampoCEP").val("");
+				}	
+			});
+		}
+		
+	}	
+	
+	function formatarCEP(ref) {
+		retorno = ref.replace(/\D/g,""); 
+		retorno = retorno.substring(0, 8);
+		return retorno; 
+	}
+	
+	</script>	
+</head>
+<body> 
+    <section>
+		<div id="campos">
+			<input type="text"  placeholder="Digite o CEP" id="CampoCEP">
+			<input type="button" id="buscar" value="Buscar">
+			<div id="buscaRapida"  title="Realiza a busca automaticamente ap&oacute;s preencher o campo CEP">		
+				<div class="flag ativo">
+					<div></div>
+				</div>
+				<div class="label">Busca automática</div>
+			</div>
+		</div>
+		
+		<div id="retorno">
+			<div class="msg erro" id="retornoErroQtd">O CEP deve conter 8 números</div>
+			<div class="msg erro" id="retornoErroInv">CEP não encontrado</div>
+			<table id="retornoTabela">
+				<tr>
+					<td class="descricao">CEP</td>
+					<td id="retornoCep"></td>
+				</tr>
+				<tr>
+					<td class="descricao">Logradouro</td>
+					<td id="retornoLogradouro"></td>
+				</tr>
+				<tr>
+					<td class="descricao">Bairro</td>
+					<td id="retornoBairro"></td>
+				</tr>
+				<tr>
+					<td class="descricao">Localidade</td>
+					<td id="retornoLocalidade"></td>
+				</tr>
+				<tr>
+					<td class="descricao">IBGE</td>
+					<td id="retornoIBGE"></td>
+				</tr>				
+			</table>
+		</div>
+    </section>
+</body>
+</html>
+
+
+
