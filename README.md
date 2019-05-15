@@ -1,1 +1,1 @@
-# Consulta-de-CEP-com-JQuery-e-JSON
+Aplicação de consulta de CEP utilizando apenas scripts JQuery como exemplo de consulta de API JSON.
