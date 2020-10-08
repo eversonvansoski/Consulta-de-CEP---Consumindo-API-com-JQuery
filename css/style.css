@@ -1,153 +1,157 @@
-*{
-	padding: 0;
-	margin: 0;
-	font-family: monospace;
-	font-size: 14px;
+* {
+  padding: 0;
+  margin: 0;
+  font-family: monospace;
+  font-size: 14px;
 }
-body{
-	background: #eff0f1;
+body {
+  background: #eff0f1;
 }
-#campos{
-	width: 400px;
-	position: absolute;
-	top: 16%;
-	left: 50%;
-	margin-left: -200px;
+#campos {
+  width: 400px;
+  position: absolute;
+  top: 16%;
+  left: 50%;
+  margin-left: -200px;
 }
-	#CampoCEP{
-		width: 300px;
-		height: 50px;
-		border: none;
-		background: #fff;
-		border-radius: 30px 0px 0px 30px;
-		text-align: center;	
-		outline: none;
-		font-size: 20px;
-		display: inline-block;
-		float: left;		
-	}
-	
-	#buscar{
-		width: 100px;
-		height: 50px;
-		border: none;
-		background: #00a2ff;
-		color: #fff;
-		border-radius: 0px 30px 30px 0px;
-		text-align: center;	
-		outline: none;
-		display: inline-block;
-		float: left;
-		cursor: pointer;
-	}			
-#retorno{
-	position: absolute;
-	top: calc(16% + 180px);
-	left: 50%;
-	margin-left: -250px;	
-	width: 500px;
-}	
-	.msg{
-		text-align: center;
-		padding: 10px;		
-	}
-	.msg.alerta{
-		background-color: #fffdc1;
-		color: #5d5c42;			
-	}	
-	.msg.ok{
-		background-color: #e1ffc1;
-		color: #435d42;			
-	}	
-	.msg.erro{
-		background-color: #ffc1c1;
-		color: #5d4242;			
-	}	
-		.msg span{
-			font-weight: bold;
-			font-size: 20px;
-		}	
-	#retorno div{
-		display: none;
-	}		
-	#retorno table{
-		width: 100%;
-		display: none;
-	}				
-	#retorno table tr td{
-		color: #435d42;
-		text-align: left;	
-		width: 50%;
-		padding: 20px;
-		background-color: #fff;
-		color: #757575;				
-	}			
-	#retorno table tr td.descricao{
-		background-color: #ace6ae;
-		color: #517553;	
-		text-align: right;	
-		font-weight: bold;		
-	}
-		#retornoCep{
-			font-weight: bold;		
-		}
-#buscaRapida{
-	margin-top: 60px;
-	line-height: 2.2;
+#CampoCEP {
+  width: 300px;
+  height: 50px;
+  border: none;
+  background: #fff;
+  border-radius: 30px 0px 0px 30px;
+  text-align: center;
+  outline: none;
+  font-size: 20px;
+  display: inline-block;
+  float: left;
 }
-	
-	.flag{
-		width: 60px;
-		height: 30px;
-		border-radius: 50px;
-		background: #f9f9f9;
-		float: left;
-		display: inline-block;
-		cursor: pointer;
-	}	
-		.flag div{
-			width: 30px;
-			height: 30px;
-			border-radius: 50px;
-			background: #c7c7c7;
-		}	
 
-	.flag.ativo{
-		background: #fff;
-	}	
-		.flag.ativo div{
-			background: #00a2ff;
-			margin-left: 50%;
-		}	
-#buscaRapida .label{
-	float: left;
-	display: inline-block;
-	margin-left: 10px;
-	color: #888;
-}	
+#buscar {
+  width: 100px;
+  height: 50px;
+  border: none;
+  background: #00a2ff;
+  color: #fff;
+  border-radius: 0px 30px 30px 0px;
+  text-align: center;
+  outline: none;
+  display: inline-block;
+  float: left;
+  cursor: pointer;
+}
+#retorno {
+  position: absolute;
+  top: calc(16% + 180px);
+  left: 50%;
+  margin-left: -250px;
+  width: 500px;
+}
+#loading {
+  width: 40px;
+  margin-left: 230px;
+  display: none;
+}
+.msg {
+  text-align: center;
+  padding: 10px;
+}
+.msg.alerta {
+  background-color: #fffdc1;
+  color: #5d5c42;
+}
+.msg.ok {
+  background-color: #e1ffc1;
+  color: #435d42;
+}
+.msg.erro {
+  background-color: #ffc1c1;
+  color: #5d4242;
+}
+.msg span {
+  font-weight: bold;
+  font-size: 20px;
+}
+#retorno div {
+  display: none;
+}
+#retorno table {
+  width: 100%;
+  display: none;
+}
+#retorno table tr td {
+  color: #435d42;
+  text-align: left;
+  width: 50%;
+  padding: 20px;
+  background-color: #fff;
+  color: #757575;
+}
+#retorno table tr td.descricao {
+  background-color: #ace6ae;
+  color: #517553;
+  text-align: right;
+  font-weight: bold;
+}
+#retornoCep {
+  font-weight: bold;
+}
+#buscaRapida {
+  margin-top: 60px;
+  line-height: 2.2;
+}
 
+.flag {
+  width: 60px;
+  height: 30px;
+  border-radius: 50px;
+  background: #f9f9f9;
+  float: left;
+  display: inline-block;
+  cursor: pointer;
+}
+.flag div {
+  width: 30px;
+  height: 30px;
+  border-radius: 50px;
+  background: #c7c7c7;
+}
+
+.flag.ativo {
+  background: #fff;
+}
+.flag.ativo div {
+  background: #00a2ff;
+  margin-left: 50%;
+}
+#buscaRapida .label {
+  float: left;
+  display: inline-block;
+  margin-left: 10px;
+  color: #888;
+}
 
 @media only screen and (max-width: 520px) {
-	#retorno{
-		margin-left: -200px;	
-		width: 400px;
-	}
-}	
+  #retorno {
+    margin-left: -200px;
+    width: 400px;
+  }
+}
 
 @media only screen and (max-width: 430px) {
-	#campos{
-		width: 300px;
-		margin-left: -150px;
-	}
-		#CampoCEP{
-			width: 220px;		
-		}
-		
-		#buscar{
-			width: 80px;
-		}
-	#retorno{
-		margin-left: -150px;	
-		width: 300px;
-	}		
-}		
+  #campos {
+    width: 300px;
+    margin-left: -150px;
+  }
+  #CampoCEP {
+    width: 220px;
+  }
+
+  #buscar {
+    width: 80px;
+  }
+  #retorno {
+    margin-left: -150px;
+    width: 300px;
+  }
+}

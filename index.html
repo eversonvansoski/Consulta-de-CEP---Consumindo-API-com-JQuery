@@ -56,10 +56,12 @@
 
       function resultadoConsulta(cep) {
         $("#retornoTabela, #retornoErro").css({ display: "none" });
+        $("#loading").css({ display: "block" });
         if ($("#CampoCEP").val().length < 8) {
           $("#retornoErro")
             .html("O CEP deve conter 8 números")
             .css({ display: "block" });
+            $("#loading").css({ display: "none" });
         } else {
           $.getJSON("https://viacep.com.br/ws/" + cep + "/json/", function (
             json
@@ -68,6 +70,7 @@
               $("#retornoErro")
                 .html("CEP não encontrado")
                 .css({ display: "block" });
+                $("#loading").css({ display: "none" });
             } else {
               $("#retornoTabela").css({ display: "inline-table" });
               $("#retornoCep").html(json.cep);
@@ -76,6 +79,7 @@
               $("#retornoLocalidade").html(json.localidade + " - " + json.uf);
               $("#retornoIBGE").html(json.ibge);
               $("#CampoCEP").val("");
+              $("#loading").css({ display: "none" });
             }
           });
         }
@@ -105,6 +109,7 @@
       </div>
 
       <div id="retorno">
+        <img src="img/loading-gif-transparent-10.gif" id="loading"/>
         <div class="msg erro" id="retornoErro"></div>
         <table id="retornoTabela">
           <tr>
